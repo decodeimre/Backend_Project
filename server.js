@@ -15,7 +15,7 @@ const app = express();
 
 // Schedule weekly courses 
 // minutes/hours/daysOfMonth/months/days
-cron.schedule("0 4 * * 0", async () => { //runs at 4 in the morning on Sunday
+cron.schedule("0 2 * * 0", async () => { //runs at 2 in the morning on Sunday - 2h offset to UTC
     await createWeeklyCourses();
   });
   

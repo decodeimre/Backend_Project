@@ -1,4 +1,3 @@
-import {zonedTimeToUtc, utcToZonedTime} from 'date-fns-tz';
 import { Course } from "../models/courseModel.js";
 import { WeeklyCourse } from "../models/weeklyCourseModel.js";
 
@@ -11,15 +10,13 @@ export const createWeeklyCourses = async () => {
   const allCourses = await WeeklyCourse.find();
 
 
-  //set Timezone
-  const timeZone = 'Europe/Berlin';
-  const now = new Date();
-  const localTime = utcToZonedTime(now, timeZone);
-
+  //get the current date
+const today = new Date();
 
   //get the date for the week after next week
 
-  const daysUntilNextMonday = 8 - localTime.getDay();
+  //set to run on sunday - (0) = 8 days til monday
+  const daysUntilNextMonday = 8 - today.getDay();
   console.log('daysUntilNextMonday:', daysUntilNextMonday)
   const startOfNextNextWeek = new Date();
   startOfNextNextWeek.setDate(today.getDate() + daysUntilNextMonday + 7);
